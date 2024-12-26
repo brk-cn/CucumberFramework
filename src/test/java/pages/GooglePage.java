@@ -1,6 +1,7 @@
 package pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -14,8 +15,7 @@ public class GooglePage {
     }
 
     static By searchBox = By.name("q");
-    static By searchButton = By.name("btnK");
-    static By searchResults = By.cssSelector("h3");
+    static By searchResults = By.cssSelector("cite");
 
     public void goToGoogle() {
         driver.get("https://www.google.com");
@@ -24,8 +24,7 @@ public class GooglePage {
     public void search(String query) {
         WebElement searchInput = driver.findElement(searchBox);
         searchInput.sendKeys(query);
-
-        driver.findElement(searchButton).click();
+        searchInput.sendKeys(Keys.RETURN);
     }
 
     public boolean isResultVisible(String text) {
@@ -48,6 +47,5 @@ public class GooglePage {
                 return;
             }
         }
-
     }
 }
